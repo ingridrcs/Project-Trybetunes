@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Loading from './Loading';
+import Loading from '../components/Loading';
+import Header from '../components/Header';
 
 class Search extends React.Component {
   constructor() {
@@ -10,20 +10,19 @@ class Search extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const num = 1000;
-    setTimeout(() => this.setState({ loading: false }), num);
-  }
+  // componentDidMount() {
+  //   const num = 1000;
+  //   setTimeout(() => this.setState({ loading: false }), num);
+  // }
 
   render() {
-    const { loading } = this.state;
-    if (loading) return <Loading />;
+    // const { loading } = this.state;
+    // if (loading) return <Loading />;
     return (
-      <nav>
-        <div data-testid="page-search">
-          <Link to="/search" />
-        </div>
-      </nav>
+      <>
+        <div data-testid="page-search" />
+        <Header />
+      </>
     );
   }
 }

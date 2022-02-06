@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 class ProfileEdit extends React.Component {
   render() {
     return (
-      <nav>
-        <div data-testid="page-profile-edit">
-          <Link to="/profile/edit" />
-        </div>
-      </nav>
+      <>
+        <div data-testid="page-profile-edit" />
+        <Header />
+      </>
     );
   }
 }

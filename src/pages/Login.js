@@ -27,7 +27,7 @@ class Login extends React.Component {
     });
   }
 
-  async onButtonCLick(event) {
+  onButtonCLick(event) {
     event.preventDefault();
     const { userName } = this.state;
     createUser({ name: userName });

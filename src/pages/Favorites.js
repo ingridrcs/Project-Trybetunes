@@ -1,14 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 class Favorites extends React.Component {
   render() {
     return (
-      <nav>
-        <div data-testid="page-favorites">
-          <Link to="/favorites" />
-        </div>
-      </nav>
+      <>
+        <div data-testid="page-favorites" />
+        <Header />
+      </>
     );
   }
 }
