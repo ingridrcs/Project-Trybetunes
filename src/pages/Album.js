@@ -34,7 +34,6 @@ class Album extends React.Component {
       loading,
       allSong,
     } = this.state;
-
     const verifyName = allSong.length && allSong[0].artistName;
     const verifyAlbum = allSong.length && allSong[0].collectionName;
     const verifyImage = allSong.length && allSong[0].artworkUrl100;
@@ -53,6 +52,7 @@ class Album extends React.Component {
                 key={ item.trackId }
                 trackName={ item.trackName }
                 previewUrl={ item.previewUrl }
+                trackId={ item.trackId }
               />))}
             </div>
           )}
@@ -68,22 +68,6 @@ Album.propTypes = {
     }),
   }).isRequired,
 };
-// Album.propTypes = {
-//   match: PropTypes.string.isRequired,
-//   params: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired,
-// };
-// Album.propTypes = {
-//   match: PropTypes.objectOf(
-//     PropTypes.shape({
-//       params: PropTypes.objectOf(
-//         PropTypes.shape({
-//           id: PropTypes.string.isRequired,
-//         }).isRequired,
-//       ).isRequired,
-//     }).isRequired,
-//   ).isRequired,
-// };
 
 export default Album;
 
