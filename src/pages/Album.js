@@ -10,7 +10,6 @@ class Album extends React.Component {
     super();
     this.state = {
       idAlbum: [],
-      nameImage: '',
       loading: false,
       allSong: [],
     };
@@ -32,7 +31,6 @@ class Album extends React.Component {
   render() {
     const {
       idAlbum,
-      nameImage,
       loading,
       allSong,
     } = this.state;
