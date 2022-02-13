@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
@@ -12,6 +13,7 @@ class Album extends React.Component {
       idAlbum: [],
       loading: false,
       allSong: [],
+      listFavorites: [],
     };
   }
 
@@ -25,7 +27,35 @@ class Album extends React.Component {
       loading: false,
       allSong,
     });
-    console.log(getAllMusics);
+    this.getFromLocal();
+  }
+
+  addFavorites= async ({ target }) => {
+    const { idAlbum } = this.state;
+    this.setState({ loading: true });
+    if (target.checked === true) {
+      const adds = idAlbum.find((item) => item.trackId === Number(target.id));
+      await addSong(adds);
+      this.getFromLocal();
+    }
+  }
+
+  getFromLocal = async () => {
+    const getLocal = await getFavoriteSongs();
+    console.log(getLocal);
+    if (getLocal) {
+      this.setState({
+        listFavorites: getLocal,
+        loading: false,
+      });
+    }
+  }
+
+  verifyCheck = (id) => {
+    const { listFavorites } = this.state;
+    console.log(listFavorites);
+    const verify = listFavorites.some((item) => item.trackId === id);
+    return verify;
   }
 
   render() {
@@ -49,10 +79,10 @@ class Album extends React.Component {
                 <h2 data-testid="album-name">{verifyAlbum}</h2>
               </div>
               {idAlbum.map((item) => (<MusicCard
+                { ...item }
                 key={ item.trackId }
-                trackName={ item.trackName }
-                previewUrl={ item.previewUrl }
-                trackId={ item.trackId }
+                handleCheck={ this.addFavorites }
+                favorites={ this.verifyCheck(item.trackId) }
               />))}
             </div>
           )}
